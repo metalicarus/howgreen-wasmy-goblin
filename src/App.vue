@@ -2,9 +2,8 @@
   <v-app>
     <v-navigation-drawer
       v-model="drawer"
-        clipped
-       app
-      permanent
+      app
+      :temporary="temporary"
     >
       <v-list-item class="px-2">
         <v-list-item-avatar>
@@ -13,12 +12,6 @@
 
         <v-list-item-title>John Leider</v-list-item-title>
 
-        <v-btn
-          icon
-          @click.stop="mini = !mini"
-        >
-          <v-icon>mdi-chevron-left</v-icon>
-        </v-btn>
       </v-list-item>
 
       <v-divider></v-divider>
@@ -40,13 +33,13 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
-       color="white"
-      elevate-on-scroll
-       scroll-target="#scrolling-techniques-7"
+      color="white"
+      scroll-target="#scrolling-techniques-7"
       class="elevation-1"
-      app
+       app
+
     >
-      <v-app-bar-nav-icon @click="drawer = true"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click="temporary = !temporary; drawer = !drawer"></v-app-bar-nav-icon>
       <v-toolbar-title>How Green Was My Goblin</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
@@ -61,7 +54,7 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        Hello World
+        <router-view />
       </v-container>
     </v-main>
   </v-app>
@@ -74,6 +67,7 @@ export default {
   data() {
     return {
       drawer: true,
+      temporary: false,
       items: [
         { title: 'Home', icon: 'mdi-home-city' },
         { title: 'My Account', icon: 'mdi-account' },
