@@ -1,5 +1,7 @@
-import auth from './auth';
+import Auth from '@/services/auth';
 
-export default {
-  auth,
-};
+const services = () => ({
+  Auth,
+});
+
+export default services();

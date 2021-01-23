@@ -1,18 +1,16 @@
-import webservice from '@/services/webservice';
-// import { BASIC_AUTH_CLIENT, BASIC_AUTH_PASS } from '@/configs';
+import webservice, { setToken } from '@/services/webservice';
 
-const authorization = (username, password) => webservice
-  .post('/oauth/token', {
-    grant_type: 'password',
-    username,
-    password,
-  })
-  .then((response) => {
-    console.log(response);
-  })
-  .catch((error) => {
-    console.log(error);
-  });
-export default {
-  authorization,
-};
+export default class Auth {
+  static async authorization(formData) {
+    return webservice.post('oauth/token', formData, { auth: { username: process.env.VUE_APP_BASIC_AUTH_CLIENT, password: process.env.VUE_APP_BASIC_AUTH_PASS } })
+      .then((response) => {
+        setToken(response.data.access_token);
+        return response.data;
+      })
+      .catch((error) => error.response.data.error);
+  }
+
+  static async userDetails() {
+    return webservice.get('/api/user-auth').then((response) => response.data);
+  }
+}

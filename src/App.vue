@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app v-if="$route.name !== 'Login'">
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -58,11 +58,15 @@
       </v-container>
     </v-main>
   </v-app>
+  <login v-else/>
 </template>
 <script>
 // import Menu from '@/components/basicTemplate/Menu/Menu.vue';
 
+import Login from '@/views/auth/Login.vue';
+
 export default {
+  components: { Login },
   // components: { Menu },
   data() {
     return {

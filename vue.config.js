@@ -4,5 +4,6 @@ module.exports = {
   ],
   devServer: {
     proxy: 'http://backend.verdemeuduende.com.br/',
+    port: 8081,
   },
 };
