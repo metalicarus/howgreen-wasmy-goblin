@@ -1,28 +1,24 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { STORE_CORE_AUTH_MODULE } from '@/store/StoreNamesEnum';
+import { AUTH_REFRESH_TOKEN } from '@/store/modules/ActionNamesEnum';
+import Store from 'vuex';
 import Home from '../views/Home.vue';
 
+Vue.use(Store);
 Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/login',
     name: 'Login',
-    meta: { auth: true },
     component: () => import('../views/auth/Login.vue'),
   },
   {
     path: '/',
     name: 'Home',
+    meta: { auth: true },
     component: Home,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
   },
 ];
 
@@ -31,5 +27,13 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-
+router.beforeEach((to, from, next) => {
+  if (to.meta.auth) {
+    if (to.name !== 'Login') {
+      const result = router.app.$store.dispatch(`${STORE_CORE_AUTH_MODULE}/auth/${AUTH_REFRESH_TOKEN}`);
+      if (!result) router.push({ name: 'Login' });
+    }
+  }
+  next();
+});
 export default router;
