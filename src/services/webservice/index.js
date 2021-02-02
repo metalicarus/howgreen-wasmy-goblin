@@ -13,10 +13,10 @@ const webservice = axios.create({
 export const setToken = (token) => {
   webservice.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
-webservice.interceptors.response.use(() => {},
+webservice.interceptors.response.use((response) => response,
   (error) => {
     if (error.response.status === 401) {
-      router.push({ name: 'Login' });
+      if (router.currentRoute.name !== 'Login') router.push({ name: 'Login' });
     }
   });
 export default webservice;

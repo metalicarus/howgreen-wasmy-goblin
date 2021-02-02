@@ -19,7 +19,7 @@
                             indeterminate
                           ></v-progress-linear>
                         </template>
-                        <v-img src="https://chimeracrew.neocities.org/harry%20icon.jpg"/>
+                        <v-img src="@/assets/img_1.png"/>
                         <v-card-text>
                           <div class="text-center title white--text">
                             Verde Meu Duende

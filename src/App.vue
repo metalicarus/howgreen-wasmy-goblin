@@ -5,17 +5,8 @@
       app
       :temporary="temporary"
     >
-      <v-list-item class="px-2">
-        <v-list-item-avatar>
-          <v-img src="https://randomuser.me/api/portraits/men/85.jpg"></v-img>
-        </v-list-item-avatar>
-
-        <v-list-item-title>John Leider</v-list-item-title>
-
-      </v-list-item>
-
+      <Menu />
       <v-divider></v-divider>
-
       <v-list dense>
         <v-list-item
           v-for="item in items"
@@ -61,13 +52,14 @@
   <login v-else/>
 </template>
 <script>
-// import Menu from '@/components/basicTemplate/Menu/Menu.vue';
+// import menu from '@/components/basicTemplate/menu/menu.vue';
 
 import Login from '@/views/auth/Login.vue';
+import Menu from '@/components/basicTemplate/menu/Menu.vue';
 
 export default {
-  components: { Login },
-  // components: { Menu },
+  components: { Menu, Login },
+  // components: { menu },
   data() {
     return {
       drawer: true,

@@ -31,7 +31,12 @@ router.beforeEach((to, from, next) => {
   if (to.meta.auth) {
     if (to.name !== 'Login') {
       const result = router.app.$store.dispatch(`${STORE_CORE_AUTH_MODULE}/auth/${AUTH_REFRESH_TOKEN}`);
-      if (!result) router.push({ name: 'Login' });
+      result.then((response) => {
+        if (!response) {
+          console.log('router');
+          router.push({ name: 'Login' });
+        }
+      });
     }
   }
   next();
