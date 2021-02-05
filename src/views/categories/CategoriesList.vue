@@ -1,16 +1,23 @@
 <template>
   <v-card>
     <v-card-title>
-      Categorias
-      <v-spacer></v-spacer>
-      <v-text-field
-        v-model="search"
-        append-icon="fas fa-search"
-        label="Buscar..."
-        single-line
-        hide-details
-        outlined
-      ></v-text-field>
+      <v-row>
+        <v-col cols="12" lg="6">CATEGORIAS</v-col>
+        <v-col cols="12" lg="6">
+          <v-row>
+            <v-col cols="12">
+              <v-text-field
+                v-model="search"
+                append-icon="fas fa-search"
+                label="Buscar..."
+                single-line
+                hide-details
+                outlined
+              />
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
     </v-card-title>
     <v-data-table
       :headers="headers"
@@ -21,6 +28,10 @@
 </template>
 
 <script>
+import { STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES } from '@/store/modules/StoreModulesNamesEnum';
+import { STORE_MAIN_REQUIREMENTS_MODULE } from '@/store/StoreNamesEnum';
+import { REQUIREMENTS_CATEGORIES_LIST } from '@/store/modules/ActionNamesEnum';
+
 export default {
   name: 'CategoriesList',
   data() {
@@ -122,6 +133,9 @@ export default {
         },
       ],
     };
+  },
+  mounted() {
+    this.$store.dispatch(`${STORE_MAIN_REQUIREMENTS_MODULE}/${STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES}/${REQUIREMENTS_CATEGORIES_LIST}`);
   },
 };
 </script>

@@ -2,6 +2,7 @@ import {
   REQUIREMENTS_CATEGORIES_LIST, REQUIREMENTS_CATEGORIES_SET_COLUMN_NAMES,
   REQUIREMENTS_CATEGORIES_SET_DATA,
 } from '@/store/modules/ActionNamesEnum';
+import services from '@/services';
 
 export default {
   use: () => ({
@@ -19,7 +20,7 @@ export default {
     },
     actions: {
       async [REQUIREMENTS_CATEGORIES_LIST]({ commit }) {
-        commit(REQUIREMENTS_CATEGORIES_SET_DATA, {});
+        commit(REQUIREMENTS_CATEGORIES_SET_DATA, await services.Requirements.getCategories());
         commit(REQUIREMENTS_CATEGORIES_SET_COLUMN_NAMES, {});
       },
     },
