@@ -4,8 +4,9 @@ import Vuex from 'vuex';
 import {
   STORE_CORE_AUTH_MODULE,
   STORE_CORE_NAVIGATIONS_MODULE,
-  STORE_CORE_NOTIFICATIONS_MODULE,
+  STORE_CORE_NOTIFICATIONS_MODULE, STORE_MAIN_REQUIREMENTS_MODULE,
 } from '@/store/StoreNamesEnum';
+import { storeMainRequirementsModule } from '@/store/modules/main';
 import {
   storeCoreAuthModule,
   storeCoreNavigationsModule,
@@ -19,5 +20,6 @@ export default () => new Vuex.Store({
     [STORE_CORE_AUTH_MODULE]: { ...storeCoreAuthModule },
     [STORE_CORE_NOTIFICATIONS_MODULE]: { ...storeCoreNotificationsModule },
     [STORE_CORE_NAVIGATIONS_MODULE]: { ...storeCoreNavigationsModule },
+    [STORE_MAIN_REQUIREMENTS_MODULE]: { ...storeMainRequirementsModule },
   },
 });

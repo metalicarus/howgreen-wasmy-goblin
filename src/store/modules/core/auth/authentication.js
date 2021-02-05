@@ -34,16 +34,6 @@ export default {
         localStorage.removeItem('howGreenWasMyGoblinToken');
         localStorage.removeItem('howGreenWasMyGoblinUserDetails');
       },
-      // [AUTH_GET_LOCAL_TOKEN](state) {
-      //   const token = state.credentials.access_token;
-      //   console.log(token);
-      //   if (token !== undefined) {
-      //     console.log('tô aqui');
-      //
-      //     return token;
-      //   }
-      //   return localStorage.getItem('howGreenWasMyGoblinToken');
-      // },
       [AUTH_GET_LOCAL_USER_DETAILS]() {
         const local = localStorage.getItem('howGreenWasMyGoblinUserDetails');
         if (local !== undefined) return JSON.parse(local);

@@ -8,6 +8,12 @@ import Home from '../views/Home.vue';
 Vue.use(Store);
 Vue.use(VueRouter);
 
+function withPrefix(routeGroup, prefix) {
+  return routeGroup.map((curr) => {
+    curr.path = `/${prefix}${curr.path}`;
+    return curr;
+  });
+}
 const routes = [
   {
     path: '/login',
@@ -20,8 +26,16 @@ const routes = [
     meta: { auth: true },
     component: Home,
   },
-];
+  ...withPrefix([
+    {
+      path: '/categories',
+      name: '#RequirementsCategoriesList',
+      meta: { auth: true },
+      component: () => import('../views/categories/CategoriesList.vue'),
+    },
+  ], 'requirements'),
 
+];
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -32,10 +46,7 @@ router.beforeEach((to, from, next) => {
     if (to.name !== 'Login') {
       const result = router.app.$store.dispatch(`${STORE_CORE_AUTH_MODULE}/auth/${AUTH_REFRESH_TOKEN}`);
       result.then((response) => {
-        if (!response) {
-          console.log('router');
-          router.push({ name: 'Login' });
-        }
+        if (!response) router.push({ name: 'Login' });
       });
     }
   }
