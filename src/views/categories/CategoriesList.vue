@@ -19,11 +19,19 @@
         </v-col>
       </v-row>
     </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="desserts"
-      :search="search"
-    ></v-data-table>
+    <v-row>
+      <v-col cols="12">
+        <v-data-table
+          :headers="headers"
+          :items="desserts"
+          :search="search"
+        >
+          <template #footer.page-text>
+            <categories-crud/>
+          </template>
+        </v-data-table>
+      </v-col>
+    </v-row>
   </v-card>
 </template>
 
@@ -31,9 +39,11 @@
 import { STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES } from '@/store/modules/StoreModulesNamesEnum';
 import { STORE_MAIN_REQUIREMENTS_MODULE } from '@/store/StoreNamesEnum';
 import { REQUIREMENTS_CATEGORIES_LIST } from '@/store/modules/ActionNamesEnum';
+import CategoriesCrud from '@/components/customTemplate/requirements/categories/CategoriesCrud';
 
 export default {
   name: 'CategoriesList',
+  components: { CategoriesCrud },
   data() {
     return {
       search: '',

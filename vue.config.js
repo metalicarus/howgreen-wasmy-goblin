@@ -3,7 +3,13 @@ module.exports = {
     'vuetify',
   ],
   devServer: {
-    proxy: 'http://backend.verdemeuduende.com.br/',
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        ws: true,
+        changeOrigin: true,
+      },
+    },
     port: 8081,
   },
 };
