@@ -1,5 +1,6 @@
 <template>
   <v-app v-if="$route.name !== 'Login'">
+    <crud-notification />
     <v-navigation-drawer
       v-model="drawer"
       :temporary="temporary"
@@ -30,11 +31,12 @@
 </template>
 <script>
 
-import Login from '@/views/auth/Login.vue';
-import Menu from '@/components/basicTemplate/menu/Menu.vue';
+import Login from '@/views/auth/Login';
+import Menu from '@/components/basicTemplate/menu/Menu';
+import CrudNotification from '@/components/basicTemplate/Notifications/CrudNotification';
 
 export default {
-  components: { Menu, Login },
+  components: { CrudNotification, Menu, Login },
   data() {
     return {
       drawer: true,

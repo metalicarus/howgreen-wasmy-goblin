@@ -11,6 +11,6 @@ export default class Requirements {
   static async putCategory(category) {
     return webservice.put(endPoint, category)
       .then((response) => response.data)
-      .catch((error) => error.response.data.error);
+      .catch((error) => error.data);
   }
 }

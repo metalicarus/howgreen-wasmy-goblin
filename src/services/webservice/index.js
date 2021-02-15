@@ -18,5 +18,6 @@ webservice.interceptors.response.use((response) => response,
     if (error.response.status === 401) {
       if (router.currentRoute.name !== 'Login') router.push({ name: 'Login' });
     }
+    return Promise.reject(error.response);
   });
 export default webservice;

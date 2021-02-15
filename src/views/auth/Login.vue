@@ -85,7 +85,7 @@
 
 import { STORE_CORE_AUTH_MODULE } from '@/store/StoreNamesEnum';
 import { AUTH_LOGIN } from '@/store/modules/ActionNamesEnum';
-import AuthNotification from '@/components/basicTemplate/Notifications/AuthNotification.vue';
+import AuthNotification from '@/components/basicTemplate/Notifications/AuthNotification';
 
 export default {
   name: 'Login',

@@ -38,7 +38,11 @@ export default {
     save() {
       if (this.$refs.form.validate()) {
         this.$store.dispatch(`${STORE_MAIN_REQUIREMENTS_MODULE}/${STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES}/${REQUIREMENTS_CATEGORIES_SAVE}`, { category: this.category });
+        this.clearForm();
       }
+    },
+    clearForm() {
+      this.category = undefined;
     },
   },
 };

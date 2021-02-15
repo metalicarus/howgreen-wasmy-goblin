@@ -29,6 +29,9 @@
           <template #footer.page-text>
             <categories-crud/>
           </template>
+          <template #item.actions="{item}">
+            <btn-delete @click.native="deleteItem(item)"/>
+          </template>
         </v-data-table>
       </v-col>
     </v-row>
@@ -40,16 +43,19 @@ import { STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES } from '@/store/modules/Store
 import { STORE_MAIN_REQUIREMENTS_MODULE } from '@/store/StoreNamesEnum';
 import { REQUIREMENTS_CATEGORIES_LIST } from '@/store/modules/ActionNamesEnum';
 import CategoriesCrud from '@/components/customTemplate/requirements/categories/CategoriesCrud';
+import BtnDelete from '@/components/basicTemplate/basics/btn/BtnDelete';
 
 export default {
   name: 'CategoriesList',
-  components: { CategoriesCrud },
+  components: { BtnDelete, CategoriesCrud },
   data() {
     return {
       search: '',
       headers: [
         { text: 'Id', value: 'id' },
         { text: 'Categoria', value: 'name' },
+        { text: 'Actions', value: 'actions', sortable: false },
+
       ],
     };
   },
@@ -59,7 +65,15 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch(`${STORE_MAIN_REQUIREMENTS_MODULE}/${STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES}/${REQUIREMENTS_CATEGORIES_LIST}`);
+    this.all();
+  },
+  methods: {
+    all() {
+      this.$store.dispatch(`${STORE_MAIN_REQUIREMENTS_MODULE}/${STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES}/${REQUIREMENTS_CATEGORIES_LIST}`);
+    },
+    deleteItem(item) {
+      console.log(item);
+    },
   },
 };
 </script>
