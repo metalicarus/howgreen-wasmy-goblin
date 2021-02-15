@@ -25,10 +25,9 @@ export default {
         commit(REQUIREMENTS_CATEGORIES_SET_DATA, await services.Requirements.getCategories());
         commit(REQUIREMENTS_CATEGORIES_SET_COLUMN_NAMES, {});
       },
-      async [REQUIREMENTS_CATEGORIES_SAVE]({ dispatcher }, payload = { category: undefined }) {
-        const result = await services.Requirements.putCategory({ name: payload.category });
-        console.log(result);
-        dispatcher(REQUIREMENTS_CATEGORIES_LIST);
+      async [REQUIREMENTS_CATEGORIES_SAVE]({ dispatch }, payload = { category: undefined }) {
+        await services.Requirements.putCategory({ name: payload.category });
+        dispatch(REQUIREMENTS_CATEGORIES_LIST);
       },
     },
     getters: { },
