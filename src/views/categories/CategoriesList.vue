@@ -29,8 +29,8 @@
           <template #footer.page-text>
             <categories-crud/>
           </template>
-          <template #item.actions="{item}">
-            <btn-delete @click.native="deleteItem(item)"/>
+          <template #item.actions>
+            <btn-with-modal-delete-record />
           </template>
         </v-data-table>
       </v-col>
@@ -43,19 +43,18 @@ import { STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES } from '@/store/modules/Store
 import { STORE_MAIN_REQUIREMENTS_MODULE } from '@/store/StoreNamesEnum';
 import { REQUIREMENTS_CATEGORIES_LIST } from '@/store/modules/ActionNamesEnum';
 import CategoriesCrud from '@/components/customTemplate/requirements/categories/CategoriesCrud';
-import BtnDelete from '@/components/basicTemplate/basics/btn/BtnDelete';
+import BtnWithModalDeleteRecord from '@/components/modules/concrete/complex/BtnWithModalDeleteRecord';
 
 export default {
   name: 'CategoriesList',
-  components: { BtnDelete, CategoriesCrud },
+  components: { BtnWithModalDeleteRecord, CategoriesCrud },
   data() {
     return {
       search: '',
       headers: [
         { text: 'Id', value: 'id' },
         { text: 'Categoria', value: 'name' },
-        { text: 'Actions', value: 'actions', sortable: false },
-
+        { text: 'Ações', value: 'actions', sortable: false },
       ],
     };
   },
