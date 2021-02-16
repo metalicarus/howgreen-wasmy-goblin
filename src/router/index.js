@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import { STORE_CORE_AUTH_MODULE } from '@/store/StoreNamesEnum';
 import { AUTH_REFRESH_TOKEN } from '@/store/modules/ActionNamesEnum';
 import Store from 'vuex';
-import Home from '../views/Home.vue';
+import Home from '../views/Home';
 
 Vue.use(Store);
 Vue.use(VueRouter);
@@ -18,7 +18,7 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import('../views/auth/Login.vue'),
+    component: () => import('../views/auth/Login'),
   },
   {
     path: '/',
@@ -26,12 +26,24 @@ const routes = [
     meta: { auth: true },
     component: Home,
   },
+  {
+    path: '/movies',
+    name: '#Movies',
+    meta: { auth: true },
+    component: () => import('../views/movies/MoviesList'),
+  },
   ...withPrefix([
     {
       path: '/categories',
       name: '#RequirementsCategoriesList',
       meta: { auth: true },
-      component: () => import('../views/categories/CategoriesList.vue'),
+      component: () => import('../views/categories/CategoriesList'),
+    },
+    {
+      path: '/genres',
+      name: '#RequirementsGenresList',
+      meta: { auth: true },
+      component: () => import('../views/genres/GenresList'),
     },
   ], 'requirements'),
 

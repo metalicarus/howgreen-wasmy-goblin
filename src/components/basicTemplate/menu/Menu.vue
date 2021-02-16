@@ -49,11 +49,11 @@ export default {
   data() {
     return {
       singles: [
-        { title: 'Filmes', icon: 'fas fa-film', routeName: '' },
-        { title: 'Livros', icon: 'fas fa-book', routeName: '' },
-        { title: 'HQs', icon: 'fas fa-hat-wizard', routeName: '' },
-        { title: 'Coleções', icon: 'fas fa-layer-group', routeName: '' },
-        { title: 'Wish List', icon: 'far fa-heart', routeName: '' },
+        { title: 'Filmes', icon: 'fas fa-film', routeName: '#Movies' },
+        // { title: 'Livros', icon: 'fas fa-book', routeName: '' },
+        // { title: 'HQs', icon: 'fas fa-hat-wizard', routeName: '' },
+        // { title: 'Coleções', icon: 'fas fa-layer-group', routeName: '' },
+        // { title: 'Wish List', icon: 'far fa-heart', routeName: '' },
       ],
       groups: [
         {
@@ -61,8 +61,8 @@ export default {
           icon: 'fas fa-check-double',
           items: [
             { title: 'Categorias', routeName: '#RequirementsCategoriesList' },
-            { title: 'Gêneros', routeName: '' },
-            { title: 'Autores', routeName: '' },
+            { title: 'Gêneros', routeName: '#RequirementsGenresList' },
+            // { title: 'Autores', routeName: '' },
           ],
         },
       ],
