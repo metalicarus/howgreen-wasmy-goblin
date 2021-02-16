@@ -33,8 +33,8 @@ export default {
         dispatch(UNSET_NOTIFICATION_CRUD);
       },
       async [SET_NOTIFICATIONS_SUCCESS]({ commit, dispatch },
-        payload = { objectCreated: undefined }) {
-        const notification = { title: 'Sucesso!', message: `${payload.objectCreated} criado com sucesso!`, type: 'success' };
+        payload = { messageSuccess: undefined }) {
+        const notification = { title: 'Sucesso!', message: `${payload.messageSuccess}`, type: 'success' };
         commit(SET_NOTIFICATIONS_SUCCESS, notification);
         dispatch(UNSET_NOTIFICATION_CRUD);
       },

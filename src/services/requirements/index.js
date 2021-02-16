@@ -13,4 +13,10 @@ export default class Requirements {
       .then((response) => response.data)
       .catch((error) => error.data);
   }
+
+  static async deleteCategory(categoryId) {
+    return webservice.delete(`${endPoint}/${categoryId}`)
+      .then((response) => response.data)
+      .catch((error) => error.data);
+  }
 }

@@ -1,4 +1,5 @@
 import {
+  REQUIREMENTS_CATEGORIES_DELETE,
   REQUIREMENTS_CATEGORIES_LIST,
   REQUIREMENTS_CATEGORIES_SAVE,
   REQUIREMENTS_CATEGORIES_SET_COLUMN_NAMES,
@@ -34,7 +35,16 @@ export default {
         if (result.error) {
           dispatch(`${STORE_CORE_NOTIFICATIONS_MODULE}/${STORE_CORE_NOTIFICATIONS_CRUDNOTIFICATIONS}/${SET_NOTIFICATIONS_ERRORS}`, { messageError: result.message }, { root: true });
         } else {
-          dispatch(`${STORE_CORE_NOTIFICATIONS_MODULE}/${STORE_CORE_NOTIFICATIONS_CRUDNOTIFICATIONS}/${SET_NOTIFICATIONS_SUCCESS}`, { objectCreated: `Categoria ${payload.category}` }, { root: true });
+          dispatch(`${STORE_CORE_NOTIFICATIONS_MODULE}/${STORE_CORE_NOTIFICATIONS_CRUDNOTIFICATIONS}/${SET_NOTIFICATIONS_SUCCESS}`, { messageSuccess: `Categoria ${payload.category} cadastrada com sucesso!` }, { root: true });
+        }
+        dispatch(REQUIREMENTS_CATEGORIES_LIST);
+      },
+      async [REQUIREMENTS_CATEGORIES_DELETE]({ dispatch }, payload = { categoryId: undefined }) {
+        const result = await services.Requirements.deleteCategory(payload.categoryId);
+        if (result.error) {
+          dispatch(`${STORE_CORE_NOTIFICATIONS_MODULE}/${STORE_CORE_NOTIFICATIONS_CRUDNOTIFICATIONS}/${SET_NOTIFICATIONS_ERRORS}`, { messageError: result.message }, { root: true });
+        } else {
+          dispatch(`${STORE_CORE_NOTIFICATIONS_MODULE}/${STORE_CORE_NOTIFICATIONS_CRUDNOTIFICATIONS}/${SET_NOTIFICATIONS_SUCCESS}`, { messageSuccess: 'Categoria excluída com sucesso!' }, { root: true });
         }
         dispatch(REQUIREMENTS_CATEGORIES_LIST);
       },

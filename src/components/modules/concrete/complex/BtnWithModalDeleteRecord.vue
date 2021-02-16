@@ -1,5 +1,10 @@
 <template>
-  <btn-with-modal-default width="500">
+  <btn-with-modal-true-or-false
+    width="500"
+    false-label="Cancelar"
+    true-label="Ok"
+    @btnWithModalTrueOrFalseEvent="response"
+  >
     <template #btnActivator="props">
       <btn-delete :v-on="props.on"/>
     </template>
@@ -9,16 +14,21 @@
         <p>Tem certeza que deseja excluir este registro?</p>
       </v-card-text>
     </template>
-  </btn-with-modal-default>
+  </btn-with-modal-true-or-false>
 </template>
 
 <script>
-import BtnWithModalDefault from '@/components/modules/concrete/complex/BtnWithModalDefault';
 import BtnDelete from '@/components/basicTemplate/basics/btn/BtnDelete';
+import BtnWithModalTrueOrFalse from '@/components/modules/concrete/complex/BtnWithModalTrueOrFalse';
 
 export default {
   name: 'BtnWithModalDeleteRecord',
-  components: { BtnDelete, BtnWithModalDefault },
+  components: { BtnWithModalTrueOrFalse, BtnDelete },
+  methods: {
+    response(eventValue) {
+      this.$emit('btnWithModalDeleteRecord', eventValue);
+    },
+  },
 };
 </script>
 
