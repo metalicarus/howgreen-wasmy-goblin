@@ -25,7 +25,9 @@
             <v-select
               :items="categories"
               v-model="category"
+              multiple
               item-text="name"
+              return-object
               :rules="requiredFieldRule"
               label="Categoria"
               outlined
@@ -40,6 +42,7 @@
               :items="genres"
               v-model="genre"
               multiple
+              return-object
               :rules="requiredFieldRule"
               item-text="name"
               label="Gênero"
@@ -61,6 +64,11 @@
             />
           </v-col>
         </v-row>
+        <v-row>
+          <v-col cols="12">
+            <v-btn outlined color="blue" block @click="save">SALVAR</v-btn>
+          </v-col>
+        </v-row>
       </v-col>
       <v-col cols="12" lg="6">
         <v-img :src="cover" width="100%"/>
@@ -71,12 +79,13 @@
 </template>
 
 <script>
-import { STORE_MAIN_REQUIREMENTS_MODULE } from '@/store/StoreNamesEnum';
+import { STORE_MAIN_MOVIES_MODULE, STORE_MAIN_REQUIREMENTS_MODULE } from '@/store/StoreNamesEnum';
 import {
+  STORE_MAIN_MODULE_MOVIES,
   STORE_MAIN_MODULE_REQUIREMENTS_CATEGORIES,
   STORE_MAIN_MODULE_REQUIREMENTS_GENRES,
 } from '@/store/modules/StoreModulesNamesEnum';
-import { REQUIREMENTS_CATEGORIES_LIST, REQUIREMENTS_GENRES_LIST } from '@/store/modules/ActionNamesEnum';
+import { MOVIES_SAVE, REQUIREMENTS_CATEGORIES_LIST, REQUIREMENTS_GENRES_LIST } from '@/store/modules/ActionNamesEnum';
 
 export default {
   name: 'MoviesForm',
@@ -114,11 +123,22 @@ export default {
     },
     save() {
       if (this.$refs.form.validate()) {
+        this.$store.dispatch(`${STORE_MAIN_MOVIES_MODULE}/${STORE_MAIN_MODULE_MOVIES}/${MOVIES_SAVE}`, {
+          title: this.title,
+          originalTitle: this.originalTitle,
+          categories: this.category,
+          genres: this.genre,
+          cover: this.cover,
+        });
         this.clearForm();
       }
     },
     clearForm() {
-      console.log('clear');
+      this.title = undefined;
+      this.originalTitle = undefined;
+      this.genre = undefined;
+      this.cover = undefined;
+      this.category = undefined;
     },
   },
 };

@@ -6,3 +6,4 @@ export const STORE_CORE_NOTIFICATIONS_CRUDNOTIFICATIONS = 'crudNotifications';
 export const STORE_CORE_NAVIGATIONS_NAVIGATIONS = 'navigations';
 
 export const STORE_MAIN_REQUIREMENTS_MODULE = 'requirements';
+export const STORE_MAIN_MOVIES_MODULE = 'movies';

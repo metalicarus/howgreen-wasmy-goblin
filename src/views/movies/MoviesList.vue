@@ -42,6 +42,11 @@
 
 import BtnWithModalDeleteRecord from '@/components/modules/concrete/complex/BtnWithModalDeleteRecord';
 import MoviesCrud from '@/components/customTemplate/movies/MoviesCrud';
+import { STORE_MAIN_MOVIES_MODULE } from '@/store/StoreNamesEnum';
+import {
+  STORE_MAIN_MODULE_MOVIES,
+} from '@/store/modules/StoreModulesNamesEnum';
+import { MOVIES_LIST } from '@/store/modules/ActionNamesEnum';
 
 export default {
   name: 'MoviesList',
@@ -67,9 +72,7 @@ export default {
   },
   methods: {
     all() {
-      // this.$store.dispatc
-      // h(`${STORE_MAIN_REQUIREMENTS_MODULE}/${STORE_MAIN_MODULE_REQU
-      // IREMENTS_GENRES}/${REQUIREMENTS_GENRES_LIST}`);
+      this.$store.dispatch(`${STORE_MAIN_MOVIES_MODULE}/${STORE_MAIN_MODULE_MOVIES}/${MOVIES_LIST}`);
     },
     deleteItem(item, response) {
       if (response) {

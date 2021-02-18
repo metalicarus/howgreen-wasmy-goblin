@@ -1,5 +1,5 @@
 <template>
-  <btn-with-modal-default width="50%">
+  <btn-with-modal-default :width="width">
     <template #btnActivator="props">
       <btn-new :v-on="props.on" :v-bind="{color: 'blue', icon: true}"/>
     </template>
@@ -20,6 +20,12 @@ import MoviesForm from '@/components/customTemplate/movies/form/MoviesForm';
 export default {
   name: 'MoviesCrud',
   components: { MoviesForm, BtnNew, BtnWithModalDefault },
+  computed: {
+    width() {
+      if (window.innerWidth > 1024) return '50%';
+      return '100%';
+    },
+  },
 };
 </script>
 
