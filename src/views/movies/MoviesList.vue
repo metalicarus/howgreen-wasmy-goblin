@@ -56,15 +56,26 @@ export default {
       search: '',
       headers: [
         { text: 'Id', value: 'id' },
-        { text: 'Gênero', value: 'name' },
-        { text: 'Ações', value: 'actions', sortable: false },
+        { text: 'Título', value: 'title' },
+        { text: 'Título Original', value: 'originalTitle' },
+        { text: 'Gêneros', value: 'resumeGenres' },
+        { text: 'Mídia', value: 'midia' },
+        {
+          text: 'Ações', value: 'actions', sortable: false, align: 'center',
+        },
       ],
     };
   },
   computed: {
     movies() {
-      // return this.$store.state.movies.data;
-      return [];
+      const movies = this.$store.state.movies.movies.data;
+      if (movies !== undefined) {
+        movies.forEach((e) => {
+          e.midia = e.categories.map((j) => j.name).join(', ');
+          e.resumeGenres = e.genres.map((j) => j.name).join(', ');
+        });
+      }
+      return movies;
     },
   },
   mounted() {
