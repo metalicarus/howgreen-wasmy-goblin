@@ -46,7 +46,7 @@ import { STORE_MAIN_MOVIES_MODULE } from '@/store/StoreNamesEnum';
 import {
   STORE_MAIN_MODULE_MOVIES,
 } from '@/store/modules/StoreModulesNamesEnum';
-import { MOVIES_LIST } from '@/store/modules/ActionNamesEnum';
+import { MOVIES_DELETE, MOVIES_LIST } from '@/store/modules/ActionNamesEnum';
 
 export default {
   name: 'MoviesList',
@@ -87,9 +87,7 @@ export default {
     },
     deleteItem(item, response) {
       if (response) {
-        // this.$store.dispatch(`${STORE_MAIN_REQUIREMENTS_M
-        // ODULE}/${STORE_MAIN_MODULE_REQUIREMENTS_GENRES}/${REQUIRE
-        // MENTS_GENRES_DELETE}`, { genreId: item.id });
+        this.$store.dispatch(`${STORE_MAIN_MOVIES_MODULE}/${STORE_MAIN_MODULE_MOVIES}/${MOVIES_DELETE}`, { movieId: item.id });
       }
     },
   },
